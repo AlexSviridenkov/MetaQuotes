@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace MetaQuotes.Services
 {
@@ -72,6 +73,7 @@ namespace MetaQuotes.Services
 
         public List<Location> findLocationsByCityName(string city)
         {
+            Thread.Sleep(5000);
             int from = 0;
             int to = citySortPosition.Count - 1;
             while (to > from)
@@ -89,17 +91,46 @@ namespace MetaQuotes.Services
                 }
                 else
                 {
-                    return middleElement;
+                    return getLocationsWithSameCityName(middle);
                 }
             }
 
             var location = locations[citySortPosition[from]];
             if (location.city == city)
-                return location;
+                return getLocationsWithSameCityName(from);
 
-            return null;
+            return new List<Location>();
         }
 
+        private List<Location> getLocationsWithSameCityName(int position)
+        {
+            List<Location> result = new List<Location>();
+            var location = locations[citySortPosition[position]];
+
+            result.Add(location);
+
+            if (position > 0)
+            {
+                int currentPost = position;
+                Location locationToCheck;
+                while ((locationToCheck = locations[citySortPosition[--currentPost]]).city == location.city)
+                {
+                    result.Add(locationToCheck);
+                }
+            }
+
+            if (position < citySortPosition.Count-2)
+            {
+                int currentPost = position;
+                Location locationToCheck;
+                while ((locationToCheck = locations[citySortPosition[++currentPost]]).city == location.city)
+                {
+                    result.Add(locationToCheck);
+                }
+            }
+
+            return result;
+        }
 
         private long convertIp(string ip)
         {
