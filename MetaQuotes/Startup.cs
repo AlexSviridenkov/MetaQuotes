@@ -61,6 +61,8 @@ namespace MetaQuotes
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.ApplicationServices.GetService<IGeoRepository>();
         }
     }
 }

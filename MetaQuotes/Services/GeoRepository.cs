@@ -73,7 +73,6 @@ namespace MetaQuotes.Services
 
         public List<Location> findLocationsByCityName(string city)
         {
-            Thread.Sleep(5000);
             int from = 0;
             int to = citySortPosition.Count - 1;
             while (to > from)
