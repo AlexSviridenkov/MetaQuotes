@@ -31,9 +31,9 @@ namespace MetaQuotes.Controllers
 
         [Route("city/locations")]
         [HttpGet]
-        public Location GetlocationByCity(string city)
+        public List<Location> GetlocationByCity(string city)
         {
-            return geoRepository.findLocationByCityName(city);
+            return geoRepository.findLocationsByCityName(city);
         }
     }
 }

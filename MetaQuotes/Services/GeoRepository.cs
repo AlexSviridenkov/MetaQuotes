@@ -70,7 +70,7 @@ namespace MetaQuotes.Services
             return null;
         }
 
-        public Location findLocationByCityName(string city)
+        public List<Location> findLocationsByCityName(string city)
         {
             int from = 0;
             int to = citySortPosition.Count - 1;
