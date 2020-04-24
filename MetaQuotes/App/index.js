@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
+import LocationByIp from './LocationByIp.vue'
+import LocationByCity from './LocationByCity.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
-        component: App
+        path: '/location-by-ip',
+        component: LocationByIp
+    },
+    {
+        path: '/locations-by-city',
+        component: LocationByCity
     }
 ]
 
@@ -19,6 +25,6 @@ const router = new VueRouter({
 
 new Vue({
     el: '#app',
-    template: "<div><router-view></router-view></div>",
+    render: h => h(App),
     router
 })

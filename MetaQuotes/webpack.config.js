@@ -64,7 +64,7 @@ module.exports = {
         filename: '[name].js',
         publicPath: 'dist/'
     },
-    devtool: '#eval-source-map'
+    devtool: '#eval-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {
