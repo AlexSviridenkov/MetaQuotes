@@ -1,6 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<!DOCTYPE html>
+@{
+    ViewData["Title"] = "Главная";
 }
 
-<div>
-</div>
+<div id='app'>Загрузка...</div>
+
+@section scripts {
+    <script src="~/dist/main.js" asp-append-version="true"></script>
+}
