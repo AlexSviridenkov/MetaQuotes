@@ -7,10 +7,10 @@
         <div style="display: flex; flex-direction:row">
             <aside class="sidebar">
                 <div>
-                    <router-link to="/location-by-ip">Get location by ip</router-link>
+                    <router-link to="/location-by-ip">Поиск местоположения по IP</router-link>
                 </div>
                 <div>
-                    <router-link to="/locations-by-city">Get location by city</router-link>
+                    <router-link to="/locations-by-city">Поиск местоположений по названию города</router-link>
                 </div>
             </aside>
 
@@ -29,6 +29,11 @@ export default { }
 
 <style lang="scss">
     aside {
-        width: 200px;
+        width: 300px;
     }
+
+    main {
+        margin-left: 20px;
+    }
+
 </style>

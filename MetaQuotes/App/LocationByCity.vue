@@ -1,30 +1,24 @@
 <template>
-    <div style="display: flex; flex-direction:row">
+    <div style="display: flex; flex-direction:column">
         <div>
             <span>Город</span>
             <input v-model="cityName" />
             <button @click="getLocations">Искать</button>
         </div>
 
-        <div style="display: flex; flex-direction:column">
-            <div v-for="location in locations">
-                <span>{{location.country}}</span>
-                <span>{{location.region}}</span>
-                <span>{{location.postal}}</span>
-                <span>{{location.city}}</span>
-                <span>{{location.organization}}</span>
-                <span>{{location.latitude}}</span>
-                <span>{{location.longitude}}</span>
-            </div>
-        </div>
+        <location-table style="margin-top:30px" :locations="locations"></location-table>
 
     </div>
 </template>
 
 <script>
+    import LocationTable from "./LocationTable.vue"
     import axios from 'axios';
 
     export default {
+        components: {
+            LocationTable
+        },
         data() {
             return {
                 locations: [],
