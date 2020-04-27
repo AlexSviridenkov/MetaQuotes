@@ -125,14 +125,14 @@ namespace MetaQuotes.Services
             string[] addrArray = ip.Split(".");
 
             if (addrArray.Length != 4)
-                throw new ArgumentException();
+                throw new IncorrectIPFormatException();
 
             long num = 0;
             for (int i = 0; i < 4; i++)
             {
                 int part = int.Parse(addrArray[i]);
                 if (part < 0 || part > 256)
-                    throw new ArgumentException();
+                    throw new IncorrectIPFormatException();
 
                 num += part * Math.Max((long)Math.Pow(256, (3 - i)), 1);
             }

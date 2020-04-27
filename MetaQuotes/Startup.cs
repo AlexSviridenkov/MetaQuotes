@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using MetaQuotes.Controllers;
 
 namespace MetaQuotes
 {
@@ -61,6 +62,7 @@ namespace MetaQuotes
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
