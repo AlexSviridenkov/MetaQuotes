@@ -95,8 +95,6 @@ namespace MetaQuotes.Services
             List<Location> result = new List<Location>();
             var location = locations[citySortPosition[position]];
 
-            result.Add(location);
-
             if (position > 0)
             {
                 int currentPost = position;
@@ -106,6 +104,8 @@ namespace MetaQuotes.Services
                     result.Add(locationToCheck);
                 }
             }
+
+            result.Add(location);
 
             if (position < citySortPosition.Count - 2)
             {
@@ -134,7 +134,7 @@ namespace MetaQuotes.Services
                 if (part < 0 || part > 256)
                     throw new ArgumentException();
 
-                num += part * Math.Max(256 * (3 - i), 1);
+                num += part * Math.Max((long)Math.Pow(256, (3 - i)), 1);
             }
 
             return num;
