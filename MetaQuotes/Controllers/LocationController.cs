@@ -14,18 +14,18 @@ namespace MetaQuotes.Controllers
     public class LocationController : ControllerBase
     {
 
-        private readonly IGeoRepository geoRepository;
+        private readonly IGeoService geoService;
 
-        public LocationController(IGeoRepository geoRepository)
+        public LocationController(IGeoService geoService)
         {
-            this.geoRepository = geoRepository;
+            this.geoService = geoService;
         }
 
         [Route("ip/location")]
         [HttpGet]
         public Location GetlocationByIp(string ip)
         {
-            return geoRepository.findLocationByIp(ip);
+            return geoService.findLocationByIp(ip);
         }
 
 
@@ -33,7 +33,7 @@ namespace MetaQuotes.Controllers
         [HttpGet]
         public List<Location> GetlocationByCity(string city)
         {
-            return geoRepository.findLocationsByCityName(city);
+            return geoService.findLocationsByCityName(city);
         }
     }
 }

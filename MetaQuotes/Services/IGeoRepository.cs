@@ -7,7 +7,8 @@ namespace MetaQuotes.Services
 {
     public interface IGeoRepository
     {
-        List<Location> findLocationsByCityName(string city);
-        Location findLocationByIp(string ip);
+        List<Location> getLocations();
+        List<IPRange> getRanges();
+        List<int> getCitySortPosition();
     }
 }
