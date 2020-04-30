@@ -95,11 +95,10 @@ namespace MetaQuotes.Services
             List<Location> result = new List<Location>();
             var location = locations[citySortPosition[position]];
 
-            if (position > 0)
             {
                 int currentPost = position;
                 Location locationToCheck;
-                while ((locationToCheck = locations[citySortPosition[--currentPost]]).city == location.city)
+                while (currentPost > 0 && (locationToCheck = locations[citySortPosition[--currentPost]]).city == location.city)
                 {
                     result.Add(locationToCheck);
                 }
@@ -107,11 +106,10 @@ namespace MetaQuotes.Services
 
             result.Add(location);
 
-            if (position < citySortPosition.Count - 2)
             {
                 int currentPost = position;
                 Location locationToCheck;
-                while ((locationToCheck = locations[citySortPosition[++currentPost]]).city == location.city)
+                while (currentPost < citySortPosition.Count - 1 && (locationToCheck = locations[citySortPosition[++currentPost]]).city == location.city)
                 {
                     result.Add(locationToCheck);
                 }
@@ -128,13 +126,15 @@ namespace MetaQuotes.Services
                 throw new IncorrectIPFormatException();
 
             long num = 0;
-            for (int i = 0; i < 4; i++)
+            long pow = 1;
+            for (int i = 3; i >= 0; i--)
             {
                 int part = int.Parse(addrArray[i]);
                 if (part < 0 || part > 256)
                     throw new IncorrectIPFormatException();
 
-                num += part * Math.Max((long)Math.Pow(256, (3 - i)), 1);
+                num += part * pow;
+                pow = 256 * pow;
             }
 
             return num;

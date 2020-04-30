@@ -21,7 +21,7 @@ namespace Tests
                 createLocation("Test3", "PT3"),
                 createLocation("Test3", "PT2"),
                 createLocation("Test6", ""),
-                createLocation("Test7", ""),
+                createLocation("Test7", "PT10"),
             });
 
             mock.Setup(a => a.getCitySortPosition()).Returns(new List<int>() {
@@ -46,11 +46,19 @@ namespace Tests
         }
 
         [Test]
-        public void TestSimple()
+        public void TestFirst()
         {
             var locations = getService.findLocationsByCityName("Test1");
             Assert.AreEqual(locations.Count, 1);
             Assert.AreEqual(locations[0].postal, "PT1");
+        }
+
+        [Test]
+        public void TestLast()
+        {
+            var locations = getService.findLocationsByCityName("Test7");
+            Assert.AreEqual(locations.Count, 1);
+            Assert.AreEqual(locations[0].postal, "PT10");
         }
 
         [Test]
